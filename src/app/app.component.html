@@ -10,6 +10,9 @@
       <button (click)="onAddServer()">Add server</button>
 
       <hr>
+      <p><b>Time</b>: {{ time | async | date:'medium'}}</p>
+
+      <hr>
       <ul class="list-group">
         <li
           class="list-group-item"

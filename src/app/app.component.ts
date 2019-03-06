@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -34,6 +35,10 @@ export class AppComponent {
   ];
   filteredStatus = '';
 
+  time: Observable<Date> = new Observable((observer) => {
+    setInterval(() => observer.next(new Date()), 1000);
+  });
+
   getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date}) {
     return {
       'list-group-item-success': server.status === 'stable',
@@ -50,4 +55,7 @@ export class AppComponent {
       started: new Date()
     });
   }
+
+
+
 }
