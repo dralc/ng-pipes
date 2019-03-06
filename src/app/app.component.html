@@ -4,6 +4,11 @@
       <input type="text" 
         placeholder="Filter Status"
         [(ngModel)]="filteredStatus">
+      
+      <br>
+      <!-- Adding a server will re-trigger impure filter pipe below -->
+      <button (click)="onAddServer()">Add server</button>
+
       <hr>
       <ul class="list-group">
         <li
