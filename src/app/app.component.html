@@ -11,12 +11,19 @@
 
       <hr>
       <p><b>Time</b>: {{ time | async | date:'medium'}}</p>
+      <p><b>Reverse <input type="text" [(ngModel)]="stringToReverse"></b>: {{ stringToReverse | reverse }}</p>
+      
+      <label for="sortBy">Sort By: </label>
+      <select name="sortBy"
+        [(ngModel)]="sortBy">
+        <option *ngFor="let key of sortByKeys" value="{{ key }}">{{ key }}</option>
+      </select>
 
       <hr>
       <ul class="list-group">
         <li
           class="list-group-item"
-          *ngFor="let server of servers | filter:filteredStatus:'status'"
+          *ngFor="let server of servers | filter:filteredStatus:'status' | sort:sortBy"
           [ngClass]="getStatusClasses(server)">
           <span
             class="badge">

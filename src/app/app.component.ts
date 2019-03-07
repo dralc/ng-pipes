@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ServerInfo } from './serverInfo.model';
 
 @Component({
   selector: 'app-root',
@@ -7,30 +8,30 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  servers = [
+  servers: Array<ServerInfo> = [
     {
       instanceType: 'medium',
       name: 'Production',
       status: 'stable',
-      started: new Date(15, 1, 2017)
+      started: new Date(2017, 6, 1)
     },
     {
       instanceType: 'large',
       name: 'User Database',
       status: 'stable',
-      started: new Date(15, 1, 2017)
+      started: new Date(2017, 1, 1)
     },
     {
       instanceType: 'small',
       name: 'Development Server',
       status: 'offline',
-      started: new Date(15, 1, 2017)
+      started: new Date(2017, 2, 1)
     },
     {
       instanceType: 'small',
       name: 'Testing Environment Server',
       status: 'stable',
-      started: new Date(15, 1, 2017)
+      started: new Date(2017, 7, 1)
     }
   ];
   filteredStatus = '';
@@ -38,6 +39,10 @@ export class AppComponent {
   time: Observable<Date> = new Observable((observer) => {
     setInterval(() => observer.next(new Date()), 1000);
   });
+
+  stringToReverse = 'A string to reverse';
+  sortByKeys: Array<String> = Object.keys(new ServerInfo());
+  sortBy: String = '';
 
   getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date}) {
     return {
