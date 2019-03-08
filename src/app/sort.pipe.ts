@@ -6,13 +6,17 @@ import { ServerInfo } from './serverInfo.model';
 })
 export class SortPipe implements PipeTransform {
 
-  transform(ar: Array<ServerInfo>, prop: string): Array<ServerInfo> {
+  /**
+   * Sorts an Array of Objects by the object <key>'s value
+   * @returns The sorted <inputAr>
+   */
+  transform(inputAr: Array<Object>, key: string): Array<Object> {
 
-    if (!prop) { return ar; }
+    if (!key) { return inputAr; }
 
-    ar.sort((a, b) => {
-      let valA = a[prop];
-      let valB = b[prop];
+    inputAr.sort((a, b) => {
+      let valA = a[key];
+      let valB = b[key];
 
       if (typeof valA === 'string' && typeof valB === 'string') {
         valA = valA.toUpperCase();
@@ -22,6 +26,6 @@ export class SortPipe implements PipeTransform {
       return valA < valB ? -1 : (valA > valB ? 1 : 0);
     });
 
-    return ar;
+    return inputAr;
   }
 }
