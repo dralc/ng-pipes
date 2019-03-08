@@ -6,7 +6,7 @@ import { ServerInfo } from './serverInfo.model';
 })
 export class SortPipe implements PipeTransform {
 
-  transform(ar: Array<ServerInfo>, prop: string): any {
+  transform(ar: Array<ServerInfo>, prop: string): Array<ServerInfo> {
 
     if (!prop) { return ar; }
 
