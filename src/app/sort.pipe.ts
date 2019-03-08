@@ -2,7 +2,8 @@ import { Pipe, PipeTransform, ElementRef } from '@angular/core';
 import { ServerInfo } from './serverInfo.model';
 
 @Pipe({
-  name: 'sort'
+  name: 'sort',
+  pure: false
 })
 export class SortPipe implements PipeTransform {
 
