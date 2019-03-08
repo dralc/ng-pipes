@@ -6,21 +6,21 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(value: Array<Object>, filterString: string, prop: string): any {
-    if (value.length === 0) {
-      return;
-    }
-
-    if (!filterString.trim()) {
-      return value;
+  /**
+   * Filters an Array of Objects. Keeps the objects where the value at <key> starts with <match>
+   * @returns A new Array of the kept objects
+   */
+  transform(inputAr: Array<Object>, match: string, key: string): Array<Object> {
+    if (inputAr.length === 0 || !match.trim()) {
+      return inputAr;
     }
 
     const keepAr = [];
-    const re = new RegExp(`^${filterString}`, 'i');
+    const re = new RegExp(`^${match}`, 'i');
 
-    for (const it of value) {
-      if ( re.test(it[prop]) ) {
-        keepAr.push(it);
+    for (const obj of inputAr) {
+      if ( re.test(obj[key]) ) {
+        keepAr.push(obj);
       }
     }
 
